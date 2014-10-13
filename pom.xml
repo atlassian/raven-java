@@ -10,7 +10,7 @@
 
     <groupId>net.kencochrane.raven</groupId>
     <artifactId>raven-all</artifactId>
-    <version>5.0.2-atlassian-2-SNAPSHOT</version>
+    <version>5.0.2-atlassian-1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>Raven-Java</name>
