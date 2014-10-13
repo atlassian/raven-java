@@ -87,11 +87,14 @@
     </ciManagement>
 
     <distributionManagement>
-        <site>
-            <id>github-pages-site</id>
-            <name>Deployment through GitHub's site deployment plugin</name>
-            <url>site/${project.version}</url>
-        </site>
+        <repository>
+            <id>atlassian-3rdparty</id>
+            <url>https://maven.atlassian.com/3rdparty</url>
+        </repository>
+        <snapshotRepository>
+            <id>atlassian-3rdparty-snapshot</id>
+            <url>https://maven.atlassian.com/3rdparty-snapshot</url>
+        </snapshotRepository>
     </distributionManagement>
 
     <properties>
