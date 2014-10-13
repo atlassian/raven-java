@@ -31,6 +31,7 @@
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
+            <version>11.0.2-atlassian-01</version>
         </dependency>
 
         <!-- Tests dependencies -->

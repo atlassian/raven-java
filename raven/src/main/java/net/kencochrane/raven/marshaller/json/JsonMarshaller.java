@@ -2,22 +2,19 @@ package net.kencochrane.raven.marshaller.json;
 
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonGenerator;
-import com.google.common.base.Charsets;
 import net.kencochrane.raven.event.Event;
 import net.kencochrane.raven.event.interfaces.SentryInterface;
 import net.kencochrane.raven.marshaller.Marshaller;
+import org.apache.commons.codec.binary.Base64OutputStream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.zip.DeflaterOutputStream;
-
-import static com.google.common.io.BaseEncoding.base64;
 
 /**
  * Event marshaller using JSON to send the data.
@@ -79,6 +76,10 @@ public class JsonMarshaller implements Marshaller {
      */
     public static final int MAX_MESSAGE_LENGTH = 1000;
     /**
+     * Line length for base64 outputstream.
+     */
+    private static final int BASE64_LINE_LENGTH = 76;
+    /**
      * Date format for ISO 8601.
      */
     private static final ThreadLocal<DateFormat> ISO_FORMAT = new ThreadLocal<DateFormat>() {
@@ -104,8 +105,8 @@ public class JsonMarshaller implements Marshaller {
         destination = new UncloseableOutputStream(destination);
 
         if (compression)
-            destination = new DeflaterOutputStream(base64().encodingStream(
-                    new OutputStreamWriter(destination, Charsets.UTF_8)));
+            destination = new DeflaterOutputStream(new Base64OutputStream(destination, true,
+                    BASE64_LINE_LENGTH, new byte[0]));
 
         try (JsonGenerator generator = jsonFactory.createGenerator(destination)) {
             writeContent(generator, event);
