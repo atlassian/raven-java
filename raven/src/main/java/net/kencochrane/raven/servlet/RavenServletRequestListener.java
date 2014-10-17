@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
  * in the event sent to Sentry.
  */
 public class RavenServletRequestListener implements ServletRequestListener {
-    private static final ThreadLocal<HttpServletRequest> THREAD_REQUEST = new ThreadLocal<>();
+    private static final ThreadLocal<HttpServletRequest> THREAD_REQUEST = new ThreadLocal<HttpServletRequest>();
 
     public static HttpServletRequest getServletRequest() {
         return THREAD_REQUEST.get();

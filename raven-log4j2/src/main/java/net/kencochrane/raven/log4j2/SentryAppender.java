@@ -159,7 +159,7 @@ public class SentryAppender extends AbstractAppender {
      * @return the parameters formatted as Strings in a List.
      */
     protected static List<String> formatMessageParameters(Object[] parameters) {
-        List<String> stringParameters = new ArrayList<>(parameters.length);
+        List<String> stringParameters = new ArrayList<String>(parameters.length);
         for (Object parameter : parameters)
             stringParameters.add((parameter != null) ? parameter.toString() : null);
         return stringParameters;
@@ -289,7 +289,7 @@ public class SentryAppender extends AbstractAppender {
      * @param extraTags A String of mappedTags. mappedTags are separated by commas(,).
      */
     public void setExtraTags(String extraTags) {
-        this.extraTags = new HashSet<>(Arrays.asList(extraTags.split(",")));
+        this.extraTags = new HashSet<String>(Arrays.asList(extraTags.split(",")));
     }
 
     @Override

@@ -62,7 +62,7 @@ public class MessageInterface implements SentryInterface {
      */
     public MessageInterface(String message, List<String> parameters) {
         this.message = message;
-        this.parameters = Collections.unmodifiableList(new ArrayList<>(parameters));
+        this.parameters = Collections.unmodifiableList(new ArrayList<String>(parameters));
     }
 
     @Override

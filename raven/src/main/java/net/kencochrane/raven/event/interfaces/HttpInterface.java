@@ -38,12 +38,12 @@ public class HttpInterface implements SentryInterface {
     public HttpInterface(HttpServletRequest request) {
         this.requestUrl = request.getRequestURL().toString();
         this.method = request.getMethod();
-        this.parameters = new HashMap<>();
+        this.parameters = new HashMap<String, Collection<String>>();
         for (Map.Entry<String, String[]> parameterMapEntry : request.getParameterMap().entrySet())
             this.parameters.put(parameterMapEntry.getKey(), Arrays.asList(parameterMapEntry.getValue()));
         this.queryString = request.getQueryString();
         if (request.getCookies() != null) {
-            this.cookies = new HashMap<>();
+            this.cookies = new HashMap<String, String>();
             for (Cookie cookie : request.getCookies())
                 this.cookies.put(cookie.getName(), cookie.getValue());
         } else {
@@ -60,7 +60,7 @@ public class HttpInterface implements SentryInterface {
         this.asyncStarted = request.isAsyncStarted();
         this.authType = request.getAuthType();
         this.remoteUser = request.getRemoteUser();
-        this.headers = new HashMap<>();
+        this.headers = new HashMap<String, Collection<String>>();
         for (String headerName : Collections.list(request.getHeaderNames()))
             this.headers.put(headerName, Collections.list(request.getHeaders(headerName)));
     }

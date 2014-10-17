@@ -35,7 +35,7 @@ public class RavenFactoryTest {
     @AfterMethod
     public void tearDown() throws Exception {
         // Reset the registered factories
-        setField(RavenFactory.class, "MANUALLY_REGISTERED_FACTORIES", new HashSet<>());
+        setField(RavenFactory.class, "MANUALLY_REGISTERED_FACTORIES", new HashSet<Object>());
         setField(RavenFactory.class, "AUTO_REGISTERED_FACTORIES", ServiceLoader.load(RavenFactory.class));
     }
 

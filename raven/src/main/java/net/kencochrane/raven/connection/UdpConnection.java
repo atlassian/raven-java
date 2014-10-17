@@ -49,7 +49,8 @@ public class UdpConnection extends AbstractConnection {
     @Override
     protected void doSend(Event event) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        try (OutputStream outputStream = baos) {
+        try {
+            OutputStream outputStream = baos;
             writeHeader(outputStream);
             marshaller.marshall(event, outputStream);
         } catch (IOException e) {

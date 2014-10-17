@@ -233,7 +233,7 @@ public class SentryAppender extends AppenderSkeleton {
      * @param extraTags A String of mappedTags. mappedTags are separated by commas(,).
      */
     public void setExtraTags(String extraTags) {
-        this.extraTags = new HashSet<>(Arrays.asList(extraTags.split(",")));
+        this.extraTags = new HashSet<String>(Arrays.asList(extraTags.split(",")));
     }
 
     @Override

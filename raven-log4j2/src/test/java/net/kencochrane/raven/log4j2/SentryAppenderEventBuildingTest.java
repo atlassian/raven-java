@@ -232,7 +232,7 @@ public class SentryAppenderEventBuildingTest {
 
     @Test
     public void testExtraTagObtainedFromMdc() throws Exception {
-        Map<String, String> mdc = new HashMap<>();
+        Map<String, String> mdc = new HashMap<String, String>();
         mdc.put(mockExtraTag, "565940d2-f4a4-42f6-9496-42e3c7c85c43");
         mdc.put("other_property", "395856e8-fa1d-474f-8fa9-c062b4886527");
 

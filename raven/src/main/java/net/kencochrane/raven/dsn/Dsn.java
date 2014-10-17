@@ -56,8 +56,8 @@ public class Dsn {
         if (dsn == null)
             throw new InvalidDsnException("The sentry DSN must be provided and not be null");
 
-        options = new HashMap<>();
-        protocolSettings = new HashSet<>();
+        options = new HashMap<String, String>();
+        protocolSettings = new HashSet<String>();
 
         extractProtocolInfo(dsn);
         extractUserKeys(dsn);
@@ -89,7 +89,9 @@ public class Dsn {
             // Check that JNDI is available (not available on Android) by loading InitialContext
             Class.forName("javax.naming.InitialContext", false, Dsn.class.getClassLoader());
             dsn = JndiLookup.jndiLookup();
-        } catch (ClassNotFoundException | NoClassDefFoundError e) {
+        } catch (ClassNotFoundException e) {
+            logger.debug("JNDI not available");
+        } catch (NoClassDefFoundError e) {
             logger.debug("JNDI not available");
         }
 
@@ -193,7 +195,7 @@ public class Dsn {
      * Mandatory elements are the {@link #host}, {@link #publicKey}, {@link #secretKey} and {@link #projectId}.
      */
     private void validate() {
-        List<String> missingElements = new LinkedList<>();
+        List<String> missingElements = new LinkedList<String>();
         if (host == null)
             missingElements.add("host");
         if (publicKey == null)

@@ -32,7 +32,7 @@ import static com.google.appengine.api.taskqueue.TaskOptions.Builder.withPayload
  */
 public class AppEngineAsyncConnection implements Connection {
     private static final Logger logger = LoggerFactory.getLogger(AppEngineAsyncConnection.class);
-    private static final Map<String, AppEngineAsyncConnection> APP_ENGINE_ASYNC_CONNECTIONS = new HashMap<>();
+    private static final Map<String, AppEngineAsyncConnection> APP_ENGINE_ASYNC_CONNECTIONS = new HashMap<String, AppEngineAsyncConnection>();
     /**
      * Identifier of the async connection.
      */
